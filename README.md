@@ -1,4 +1,4 @@
-# Component-based Framework Project Starter
+# Component-based Framework Starter Project
 
 This repository can be used as a starter project for building a plain vanilla
 JavaScript single-page web app. It provides a couple of library files (in the
