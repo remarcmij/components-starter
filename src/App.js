@@ -1,21 +1,12 @@
 import store from './store/store.js';
-import { setInput } from './store/actions.js';
-import Input from './components/Input.js';
-import Button from './components/Button.js';
+import StateLifter from './components/StateLifter.js';
+import Form from './components/Form.js';
 import TextField from './components/TextField.js';
 
 function App(parent) {
-  const state = {};
+  StateLifter(parent);
 
-  const onInput = (value) => {
-    state.value = value;
-  };
-
-  const onClick = () => setInput(state.value);
-
-  Input(parent, { onInput });
-
-  Button(parent, { onClick });
+  Form(parent);
 
   TextField(parent);
 
