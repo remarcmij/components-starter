@@ -1,5 +1,5 @@
 import createComponent from '../lib/createComponent.js';
-import { setInput } from '../store/actions.js';
+import store from '../store/store.js';
 
 function Form(parent) {
   const form = createComponent(parent, { tag: 'form' });
@@ -17,7 +17,7 @@ function Form(parent) {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    setInput(formData.get('input'));
+    store.updateState({ input: formData.get('input') });
   });
 }
 

@@ -1,15 +1,15 @@
-import { setInput } from '../store/actions.js';
+import store from '../store/store.js';
 import Input from './Input.js';
 import Button from './Button.js';
 
 function StateLifter(parent) {
-  const state = {};
+  const localState = {};
 
   const onInput = (value) => {
-    state.value = value;
+    localState.value = value;
   };
 
-  const onClick = () => setInput(state.value);
+  const onClick = () => store.updateState({ input: localState.value });
 
   Input(parent, { onInput });
   Button(parent, { onClick });
