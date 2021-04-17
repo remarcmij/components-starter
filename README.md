@@ -62,7 +62,7 @@ export default createStore(initialState);
 
 Creates an observable local state object. See the `StateLifter` component for an example.
 
-````js
+```js
 function createLocalState(state = {}, onUpdate)
 ```
 
@@ -73,7 +73,7 @@ following prescribed signature:
 
 ```js
 function MyComponent(parent[, props])
-````
+```
 
 The `parent` parameter represents a parent HTML element to which this component
 should be appended. The optional `props` parameter is a JavaScript object that
