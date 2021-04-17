@@ -1,7 +1,5 @@
-function Store() {
-  let state = {
-   input: '',
-  };
+function createStore(initialState) {
+  let state = {...initialState};
 
   const listeners = new Set();
 
@@ -26,4 +24,4 @@ function Store() {
   return { getState, updateState, subscribe };
 }
 
-export default Store();
+export default createStore;

@@ -1,4 +1,4 @@
-import store from './store/store.js';
+import store from './store.js';
 import StateLifter from './components/StateLifter.js';
 import Form from './components/Form.js';
 import TextField from './components/TextField.js';

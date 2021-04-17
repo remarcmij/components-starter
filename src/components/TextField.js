@@ -1,5 +1,5 @@
 import createComponent from '../lib/createComponent.js';
-import store from '../store/store.js';
+import store from '../store.js';
 
 function TextField(parent) {
   const container = createComponent(parent);

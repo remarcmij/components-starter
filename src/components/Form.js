@@ -1,5 +1,5 @@
 import createComponent from '../lib/createComponent.js';
-import store from '../store/store.js';
+import store from '../store.js';
 
 function Form(parent) {
   const form = createComponent(parent, { tag: 'form' });
