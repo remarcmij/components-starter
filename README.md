@@ -1,4 +1,4 @@
-# HYF-GITHUB-MVC
+# components-starter
 
 ## Component function structure
 
