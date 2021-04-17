@@ -60,7 +60,7 @@ export default createStore(initialState);
 
 ### File: createLocalState.js
 
-Create an observable local state object. See the `StateLifter` component for an example.
+Creates an observable local state object. See the `StateLifter` component for an example.
 
 ````js
 function createLocalState(state = {}, onUpdate)
