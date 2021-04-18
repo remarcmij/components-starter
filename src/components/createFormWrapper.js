@@ -7,7 +7,7 @@ export function createFormWrapper(parent) {
   container.classList.add('container');
   parent.appendChild(container);
 
-  createHeader(container, { title: 'Managing state using global store' });
+  createHeader(container, { title: 'Simple form' });
   createForm(container);
   createTextField(container);
 }
