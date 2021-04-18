@@ -37,9 +37,7 @@ export function createHeader(parent, props) {
 And here is an example of how it might be used:
 
 ```js
-const onClick = () => {...}
-
-createButton(container, { onClick });
+createHeader(container, { title: 'Simple form' });
 ```
 
 A nested HTML structure can be created by nesting component creation functions,
