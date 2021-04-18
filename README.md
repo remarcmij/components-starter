@@ -22,16 +22,14 @@ where
 
 The function can optionally return a reference to its top level HTML element.
 
-Here is an example of a component creation function that creates a Button component:
+Here is an example of a component creation function that creates a Header component:
 
 ```js
-export function createButton(parent, props) {
-  const { onClick } = props;
-  const elem = document.createElement('button');
+export function createHeader(parent, props) {
+  const { title } = props;
+  const elem = document.createElement('p');
+  elem.textContent = title;
   parent.appendChild(elem);
-  elem.type = 'button';
-  elem.textContent = 'Submit';
-  elem.addEventListener('click', onClick);
   return elem;
 }
 ```
@@ -48,24 +46,18 @@ A nested HTML structure can be created by nesting component creation functions,
 for example:
 
 ```js
-import { createInput } from './createInput.js';
-import { createButton } from './createButton.js';
+import { createForm } from './createForm.js';
+import { createTextField } from './createTextField.js';
 import { createHeader } from './createHeader.js';
 
-export function createCombiWrapper(parent) {
+export function createFormWrapper(parent) {
   const container = document.createElement('div');
   container.classList.add('container');
   parent.appendChild(container);
 
-  const onInput = (value) => {...}
-  const onClick = () => {...}
-
-  createInput(container, { onInput });
-  createButton(container, { onClick });
-
-  const textField = document.createElement('div');
-  container.appendChild(textField);
-  return container;
+  createHeader(container, { title: 'Simple form' });
+  createForm(container);
+  createTextField(container);
 }
 ```
 
