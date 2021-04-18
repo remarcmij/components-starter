@@ -1,11 +1,11 @@
 {
-  "name": "hyf-github-mvc",
+  "name": "components-starter",
   "version": "1.0.0",
-  "description": "A vanilla JavaScript MVC example",
+  "description": "A plain vanilla JavaScript components-based starter project",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/remarcmij/hyf-github-mvc"
+    "url": "git+https://github.com/remarcmij/components-starter"
   },
   "keywords": [
     "HackYourFuture"
