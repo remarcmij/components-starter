@@ -1,103 +1,125 @@
 # Component-based Starter Project
 
-This repository can be used as a starter project for building a plain vanilla
-JavaScript single-page web app. It provides a couple of library files (in the
-`lib` folder) that together can be considered to form a mini-framework.
+This repository can be used as a starter project for building plain vanilla JavaScript single-page web applications. It encourages specific patterns, naming conventions and code structures for creating a hierarchy of "components". Adherence to these principles can greatly help to cleanly organize your code and keep its complexity manageable.
 
-## Contents of the `lib` folder
+Components in this sense are simply HTML elements, appended to a parent element, which may have children and event listeners.
 
-### File: createElement.js
+## Component creation functions
+
+A component creation function under these rules must adhere to a specific function "signature" (i.e. have a predefined number of parameters with predefined types). Here is the prescribed function signature for such a function:
 
 ```js
-function createElement(parent, props = {})
+createXXX(parent[, props])
 ```
 
-This function creates an HTML element (by default a `div`) and appends it to
-a `parent` HTML element.
+where
 
-The optional `props` argument can be used to specify the type of the HTML
-element to create (overriding the default of `div`) and any attributes to
-add to the element.
+- `XXX` is the name of the component to create, e.g. `createHeader`,
+- `parent` is the parent HTML element to which this component is to be appended,
+- `props` is an optional parameter through which a JavaScript object can be passed,
+  containing properties for configuring the component (e.g. attributes, callbacks,
+  etc.).
 
-If a `text` property is provided it is used to set the `textContent` of the
-element rather than setting an attribute value.
+The function can optionally return a reference to its top level HTML element.
 
-The function returns the newly created element.
-
-Example:
+Here is an example of a component creation function that creates a Button component:
 
 ```js
- const p = createElement(parent, { use: 'p', text: 'Hello world! });
-```
-
-### File: clearElement.js
-
-This function simply removes all child nodes from an element.
-
-```js
-function clearElement(element)
-```
-
-### File: createStore.js
-
-Creates an global store to which components can send updates by calling
-`store.updateState()` and/or receive state updates by calling `store.subscribe()`.
-
-To create a store, call the `createStore()` function and pass an object
-representing the initial state as an argument.
-
-Example:
-
-```js
-import createStore from './lib/createStore.js';
-
-const initialState = {
-  input: '',
-};
-
-export default createStore(initialState);
-```
-
-### File: createLocalState.js
-
-Creates an observable local state object. See the `StateLifter` component for an example.
-
-```js
-function createLocalState(state = {}, onUpdate)
-```
-
-## Components
-
-Components in this mini-framework are simply JavaScript functions with the
-following prescribed signature:
-
-```js
-function MyComponent(parent[, props])
-```
-
-The `parent` parameter represents a parent HTML element to which this component
-should be appended. The optional `props` parameter is a JavaScript object that
-can be used to pass 'props' to the component.
-
-Following the React convention, component functions should start with an uppercase
-letter (i.e., Pascal case).
-
-Components can be nested.
-
-It is recommended to place components in a `components` folder.
-
-Example:
-
-```js
-function Button(parent, props) {
+export function createButton(parent, props) {
   const { onClick } = props;
-  const button = createElement(parent, {
-    use: 'button',
-    type: 'button',
-    text: 'Submit',
-  });
-  button.addEventListener('click', onClick);
+  const elem = document.createElement('button');
+  parent.appendChild(elem);
+  elem.type = 'button';
+  elem.textContent = 'Submit';
+  elem.addEventListener('click', onClick);
+  return elem;
 }
 ```
 
-For further details, please review the starter code provided in this repo.
+And here is an example of how it might be used:
+
+```js
+const onClick = () => {...}
+
+createButton(container, { onClick });
+```
+
+A nested HTML structure can be created by nesting component creation functions,
+for example:
+
+```js
+import { createInput } from './createInput.js';
+import { createButton } from './createButton.js';
+import { createHeader } from './createHeader.js';
+
+export function createCombiWrapper(parent) {
+  const container = document.createElement('div');
+  container.classList.add('container');
+  parent.appendChild(container);
+
+  const onInput = (value) => {...}
+  const onClick = () => {...}
+
+  createInput(container, { onInput });
+  createButton(container, { onClick });
+
+  const textField = document.createElement('div');
+  container.appendChild(textField);
+  return container;
+}
+```
+
+## Global State Management
+
+The starter project include a `store.js` file that implements a Publish/Subscribe
+pattern that was introduced in the homework of JavaScript Week 4. It can be
+use to communicate application 'state' between the various components that
+make up the application.
+
+Application state is maintain in simple JavaScript object inside the store
+module, called 'state'.
+
+Some components may send state updates to the store with other components
+may receive state updates by subscribing to the store. Or a component may do
+both.
+
+Here is an example of a component sending state updates through its event
+handler:
+
+```js
+import { updateState } from '../store.js';
+
+export function createForm(parent) {
+  const form = document.createElement('form');
+  ...
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    ...
+    updateState({ input: <some value> });
+  });
+}
+```
+
+And here is an example of a component subscribing to the store:
+
+```js
+import { subscribe } from '../store.js';
+
+export function createTextField(parent) {
+  const elem = document.createElement('div');
+  parent.appendChild(elem);
+
+  subscribe((state) => {
+    const { input } = state;
+    elem.textContent = input;
+  });
+}
+```
+
+Whenever the Form component calls `updateState` like this, the `input` property
+from the store's `state` object is updated.
+
+The TextField object receives the updated state object and singles out the
+`input` property to update its HTML element.
+
+For further details, please inspect the provided starter code.
