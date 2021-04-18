@@ -71,20 +71,13 @@ export function createCombiWrapper(parent) {
 
 ## Global State Management
 
-The starter project include a `store.js` file that implements a Publish/Subscribe
-pattern that was introduced in the homework of JavaScript Week 4. It can be
-use to communicate application 'state' between the various components that
-make up the application.
+The starter project includes a `store.js` file that implements a Publish/Subscribe pattern that was introduced in the homework of JavaScript Week 4. It can be used to communicate application 'state' between the various components that make up the application.
 
-Application state is maintain in simple JavaScript object inside the store
-module, called 'state'.
+Application state is maintained in a simple JavaScript object inside the store module, called `state`.
 
-Some components may send state updates to the store with other components
-may receive state updates by subscribing to the store. Or a component may do
-both.
+Some components may send state updates to the store while other components may receive state updates by subscribing to the store. Or a component may do both.
 
-Here is an example of a component sending state updates through its event
-handler:
+Here is an example of a component sending state updates through its event handler:
 
 ```js
 import { updateState } from '../store.js';
@@ -116,10 +109,8 @@ export function createTextField(parent) {
 }
 ```
 
-Whenever the Form component calls `updateState` like this, the `input` property
-from the store's `state` object is updated.
+Whenever the Form component calls `updateState` like this, the `input` property from the store's `state` object is updated.
 
-The TextField object receives the updated state object and singles out the
-`input` property to update its HTML element.
+The TextField object receives the updated state object and singles out the `input` property to update its HTML element.
 
 For further details, please inspect the provided starter code.
