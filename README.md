@@ -6,10 +6,10 @@ JavaScript single-page web app. It provides a couple of library files (in the
 
 ## Contents of the `lib` folder
 
-### File: createComponent.js
+### File: createElement.js
 
 ```js
-function createComponent(parent, props = {})
+function createElement(parent, props = {})
 ```
 
 This function creates an HTML element (by default a `div`) and appends it to
@@ -27,15 +27,15 @@ The function returns the newly created element.
 Example:
 
 ```js
- const p = createComponent(parent, { use: 'p', text: 'Hello world! });
+ const p = createElement(parent, { use: 'p', text: 'Hello world! });
 ```
 
-### File: clearComponent.js
+### File: clearElement.js
 
 This function simply removes all child nodes from an element.
 
 ```js
-function clearComponent(element)
+function clearElement(element)
 ```
 
 ### File: createStore.js
@@ -91,7 +91,7 @@ Example:
 ```js
 function Button(parent, props) {
   const { onClick } = props;
-  const button = createComponent(parent, {
+  const button = createElement(parent, {
     use: 'button',
     type: 'button',
     text: 'Submit',

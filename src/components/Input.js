@@ -1,8 +1,8 @@
-import createComponent from '../lib/createComponent.js';
+import createElement from '../lib/createElement.js';
 
 function Input(parent, props) {
   const { onInput } = props;
-  const input = createComponent(parent, { use: 'input', type: 'text' });
+  const input = createElement(parent, { use: 'input', type: 'text' });
   input.addEventListener('input', (event) => onInput(event.target.value));
 }
 

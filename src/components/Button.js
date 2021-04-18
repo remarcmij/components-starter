@@ -1,8 +1,8 @@
-import createComponent from '../lib/createComponent.js';
+import createElement from '../lib/createElement.js';
 
 function Button(parent, props) {
   const { onClick } = props;
-  const button = createComponent(parent, {
+  const button = createElement(parent, {
     use: 'button',
     type: 'button',
     text: 'Submit',

@@ -1,14 +1,14 @@
-import createComponent from '../lib/createComponent.js';
+import createElement from '../lib/createElement.js';
 import store from '../store.js';
 
 function Form(parent) {
-  const form = createComponent(parent, { use: 'form' });
-  createComponent(form, {
+  const form = createElement(parent, { use: 'form' });
+  createElement(form, {
     use: 'input',
     type: 'text',
     name: 'input',
   });
-  createComponent(form, {
+  createElement(form, {
     use: 'button',
     type: 'submit',
     text: 'Submit Form',
