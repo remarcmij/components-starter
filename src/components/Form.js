@@ -2,14 +2,14 @@ import createComponent from '../lib/createComponent.js';
 import store from '../store.js';
 
 function Form(parent) {
-  const form = createComponent(parent, { tag: 'form' });
+  const form = createComponent(parent, { use: 'form' });
   createComponent(form, {
-    tag: 'input',
+    use: 'input',
     type: 'text',
     name: 'input',
   });
   createComponent(form, {
-    tag: 'button',
+    use: 'button',
     type: 'submit',
     text: 'Submit Form',
   });

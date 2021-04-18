@@ -27,7 +27,7 @@ The function returns the newly created element.
 Example:
 
 ```js
- const p = createComponent(parent, { tag: 'p', text: 'Hello world! });
+ const p = createComponent(parent, { use: 'p', text: 'Hello world! });
 ```
 
 ### File: clearComponent.js
@@ -92,7 +92,7 @@ Example:
 function Button(parent, props) {
   const { onClick } = props;
   const button = createComponent(parent, {
-    tag: 'button',
+    use: 'button',
     type: 'button',
     text: 'Submit',
   });

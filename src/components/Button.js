@@ -3,7 +3,7 @@ import createComponent from '../lib/createComponent.js';
 function Button(parent, props) {
   const { onClick } = props;
   const button = createComponent(parent, {
-    tag: 'button',
+    use: 'button',
     type: 'button',
     text: 'Submit',
   });
